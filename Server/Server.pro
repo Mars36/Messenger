@@ -26,3 +26,28 @@ QMAKE_LFLAGS = -lrt
 
 unix:!macx: LIBS = /usr/local/lib/libp7.a
 LIBS = /usr/local/lib/*.a
+
+win32: LIBS += -L$$PWD/p7/lib/ -lp7
+
+INCLUDEPATH += $$PWD/p7/include
+DEPENDPATH += $$PWD/p7/include
+
+win32:!win32-g++: PRE_TARGETDEPS += $$PWD/p7/lib/p7.lib
+else:win32-g++: PRE_TARGETDEPS += $$PWD/p7/lib/libp7.a
+
+win32: LIBS += -L$$PWD/p7/lib/ -lWS2_32
+
+INCLUDEPATH += $$PWD/p7/include
+DEPENDPATH += $$PWD/p7/include
+
+win32:!win32-g++: PRE_TARGETDEPS += $$PWD/p7/lib/WS2_32.lib
+else:win32-g++: PRE_TARGETDEPS += $$PWD/p7/lib/libWS2_32.a
+
+win32: LIBS += -L$$PWD/p7/lib/ -lWSock32
+
+INCLUDEPATH += $$PWD/p7/include
+DEPENDPATH += $$PWD/p7/include
+
+win32:!win32-g++: PRETARGETDEPS += $$PWD/p7/lib/WSock32.lib
+else:win32-g++: PRE_TARGETDEPS += $$PWD/p7/lib/libWSock32.a
+_
